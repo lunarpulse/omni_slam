@@ -1,0 +1,6 @@
+[package]
+name = "omni_slam"
+version = "0.1.0"
+authors = ["lunarpulse <lunarpulse@gmail.com>"]
+
+[dependencies]
