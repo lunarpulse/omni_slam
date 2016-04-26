@@ -1,4 +1,4 @@
-use measurement_simulation::data_bundle::SonarModule;
+use measurement_simulation::sonar_module::SonarModule;
 
 fn measure_dist(sonar: &SonarModule) {
     //unimplemented!()

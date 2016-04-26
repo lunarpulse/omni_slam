@@ -1,5 +1,7 @@
 mod measurement_simulation;
-use measurement_simulation::data_bundle::*;
+use measurement_simulation::sonar_module::*;
+use measurement_simulation::test_condition::*;
+use measurement_simulation::test_results::*;
 
 fn main() {
     let test_condiiton = TestCondition::new( 0.5,0.5,7.5, 30.0, 5.0);
