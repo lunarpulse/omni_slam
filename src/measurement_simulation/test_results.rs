@@ -123,20 +123,19 @@ impl TestResults {
         self.results_accquisition.borrow().clone()
     }
 
-    pub fn toString(&self) -> String {
+    pub fn to_string(&self) -> String {
         //or String::from("")
-        let mut returnString = String::from("");
+        let mut return_string = String::from("");
 
         for items in self.results_accquisition.as_ref().borrow().iter(){
             let radius:f32 =items.0;
             let angle_speed:f32 = items.1;
             let accquired:bool = items.2;
-            returnString = returnString + &radius.to_string()
+            return_string = return_string + &radius.to_string()
                     +&String::from(",")+ &angle_speed.to_string()
                         +&String::from(",")+ &accquired.to_string() + &String::from("\n");
         }
-        returnString
-
+        return_string
     }
 
 

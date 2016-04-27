@@ -1,8 +1,14 @@
+extern crate csv;
+
 mod measurement_simulation;
 use measurement_simulation::sonar_module::*;
 use measurement_simulation::test_condition::*;
 use measurement_simulation::test_results::*;
-extern crate csv;
+
+use std::error::Error;
+use std::io::prelude::*;
+use std::fs::File;
+use std::path::Path;
 
 fn main() {
     let test_condiiton = TestCondition::new( 0.5, 0.5, 7.5, 5.0, 5.0, 0.0);
@@ -33,14 +39,50 @@ fn main() {
 
     let data_acquition = test_results.decide_acquisition(&check_stuct, &test_condiiton);
     //data_acquition.iter().map(move|(_,_,x)|if x == false{println!("data_acquition: {:?}\n", data_acquition);});
-    println!("data_acquition: {:?}\n", data_acquition.is_empty());
+    println!("data_acquition is empty? {:?}\n", data_acquition.is_empty());
 
-    let data_to_csv = test_results.toString();
+    let data_to_csv = test_results.to_string();
     //println!("data_to_csv: {:?}", data_to_csv);
-    let mut rdr = csv::Reader::from_string(data_to_csv).has_headers(false);
-    for row in rdr.decode() {
-        let (radius, angle_speed, accquired): (f32, f32, bool) = row.unwrap();
-        println!("{}, {}: {}", angle_speed, radius, accquired);
-    }
+    //let mut rdr = csv::Reader::from_string(data_to_csv.clone()).has_headers(false);
 
+    //
+    // type Row = (f32, f32, bool);
+    // let rows = rdr.decode().collect::<csv::Result<Vec<Row>>>().unwrap();
+    // assert_eq!(rows.len(), 1430);
+
+    // for row in rdr.decode() {
+    //     let (radius, angle_speed, accquired): (f32, f32, bool) = row.unwrap();
+    //     println!("{}, {}: {}", angle_speed, radius, accquired);
+    // }
+    // while !rdr.done() {
+    //     while let Some(r) = rdr.next_bytes().into_iter_result() {
+    //         print!("{:?} ", r.unwrap());
+    //     }
+    //     println!("");
+    // }
+    let file_name = "waveAckCheck.csv".to_string();
+    write_csv(data_to_csv,file_name);
+}
+
+fn write_csv(data_to_csv:String, file_name:String) {
+    //File write down
+    let path = Path::new(&file_name);
+    let display = path.display();
+
+    // Open a file in write-only mode, returns `io::Result<File>`
+    let mut file = match File::create(&path) {
+        Err(why) => panic!("couldn't create {}: {}",
+                           display,
+                           Error::description(&why)),
+        Ok(file) => file,
+    };
+
+    // Write the `LOREM_IPSUM` string to `file`, returns `io::Result<()>`
+    match file.write_all(data_to_csv.as_bytes()) {
+        Err(why) => {
+            panic!("couldn't write to {}: {}", display,
+                                               Error::description(&why))
+        },
+        Ok(_) => println!("successfully wrote to {}", display),
+    }
 }
