@@ -10,11 +10,11 @@ pub struct TestCondition  {
     //radious of the outer test ring
     rad_end: f32,
     //increment of the speed each time
-    ang_speed_incre: f32,
+    pub ang_speed_incre: f32,
     //initial angle speed
-    ang_speed: f32,
+    pub ang_speed: f32,
     //initial angle starting point
-    ang_start: f32,
+    pub ang_start: f32,
     //initial diameters, due to this container the entire struct need to be set up with new function
     pub diameters: Arc<RefCell<Vec<f32>>>,
     //arcs: Arc<RefCell<Vec<f32>>>, //TODO implement the ang_start fraction part
