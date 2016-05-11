@@ -4,12 +4,15 @@ mod measurement_simulation;
 use measurement_simulation::sonar_module::*;
 use measurement_simulation::test_condition::*;
 use measurement_simulation::test_results::*;
+<<<<<<< HEAD
 
 use std::error::Error;
 use std::io::prelude::*;
 use std::fs::File;
 use std::path::Path;
 //TODO implement the getopts in this to control from command line
+=======
+>>>>>>> origin/master
 
 fn main() {
     let test_condiiton = TestCondition::new( 0.5, 0.5, 7.5, 5.0, 5.0, 0.0);

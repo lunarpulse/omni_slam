@@ -2,6 +2,7 @@ mod measurement_simulation;
 
 #[cfg(test)]
 mod test {
+<<<<<<< HEAD
 //! TODO doc creating test
 //! Constructs a new `SonarModule`.
 //!
@@ -16,6 +17,9 @@ mod test {
 //! assert_eq!(1i8, check_stuct.num_sensors);
 //! assert_eq!(0.5f32, check_stuct.effective_zone);
 //! ```
+=======
+
+>>>>>>> origin/master
     use measurement_simulation::sonar_module::*;
     use measurement_simulation::test_results::*;
     use measurement_simulation::test_condition::*;
@@ -31,6 +35,7 @@ mod test {
 
     #[test]
     fn test_condition_test() {
+<<<<<<< HEAD
         let test_condiiton = TestCondition::new(  0.5, 0.5, 7.5, 5.0, 5.0, 0.0);
     }
 
@@ -40,6 +45,9 @@ mod test {
         let test_condiiton = TestCondition::new(  0.5, 0.5,7.5, 5.0, 5.0, 0.0);
         let test_results = TestResults::new();
         let return_time : Vec<(f32,f32)>= test_results.return_time(&check_stuct, &test_condiiton);
+=======
+        let test_condiiton = TestCondition::new( 0.5,0.5,7.5, 30.0, 5.0);
+>>>>>>> origin/master
     }
 
 }
