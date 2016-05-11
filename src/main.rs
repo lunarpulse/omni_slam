@@ -9,15 +9,16 @@ use std::error::Error;
 use std::io::prelude::*;
 use std::fs::File;
 use std::path::Path;
+//TODO implement the getopts in this to control from command line
 
 fn main() {
     let test_condiiton = TestCondition::new( 0.5, 0.5, 7.5, 5.0, 5.0, 0.0);
     println!("test_condiiton: {:?}", &test_condiiton);
 
-    test_condiiton.set_up_diameters( 0.25, 1.0, 3.5,);
+    test_condiiton.set_up_diameters( 0.5, 0.5, 7.5,);
     println!("test_condiiton set_up_diameters: {:?}", test_condiiton);
 
-    let check_stuct = SonarModule{dist_to_core: 1.5,velocity: 340.0,num_sensors: 1,effective_zone: 0.5} ;
+    let check_stuct = SonarModule{dist_to_core: 1.5, velocity: 340.0,num_sensors: 1,effective_zone: 0.5} ;
     println!("check_stuct : {:?}", check_stuct);
 
     //initialising the test struct to store test results.
@@ -41,7 +42,9 @@ fn main() {
     //data_acquition.iter().map(move|(_,_,x)|if x == false{println!("data_acquition: {:?}\n", data_acquition);});
     println!("data_acquition is empty? {:?}\n", data_acquition.is_empty());
 
+    //TODO getopts to implment the command line options
     let data_to_csv = test_results.to_string();
+    
     //println!("data_to_csv: {:?}", data_to_csv);
     //let mut rdr = csv::Reader::from_string(data_to_csv.clone()).has_headers(false);
 
@@ -60,10 +63,15 @@ fn main() {
     //     }
     //     println!("");
     // }
+    //TODO filename from the cmd args
     let file_name = "waveAckCheck.csv".to_string();
     write_csv(data_to_csv,file_name);
 }
-
+/// writing it to a csv
+/// use std::error::Error;
+/// use std::io::prelude::*;
+/// use std::fs::File;
+/// use std::path::Path;
 fn write_csv(data_to_csv:String, file_name:String) {
     //File write down
     let path = Path::new(&file_name);

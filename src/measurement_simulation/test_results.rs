@@ -122,7 +122,7 @@ impl TestResults {
         }
         self.results_accquisition.borrow().clone()
     }
-
+///a thing to string which array?
     pub fn to_string(&self) -> String {
         //or String::from("")
         let mut return_string = String::from("");
